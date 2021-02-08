@@ -237,12 +237,42 @@ def jugada_valida(tablero, jugada_e):
     else:
         return True
 
-# # verificar si ya se gano
-# def ganador(tablero):
+# verificar si ya se lleno el del jugador
+def ganador_jugador(tablero):
+    # verificar si el lado izquierdo esta lleno
+    # print(tablero[0][0])
+    if (tablero[0][0] == '-' or tablero[0][1] == '-' or tablero[0][2] == '-' or tablero[0][3] == '-' or tablero[0][4] == '-' or tablero[1][0] == '-' or tablero[1][1] == '-' or tablero[1][2] == '-' or tablero[1][3] == '-' or tablero[2][0] == '-' or tablero[2][1] == '-' or tablero[2][2] == '-' or tablero[3][0] == '-' or tablero[3][1] == '-' or tablero[3][0] == '-'):
+        # print(ganador)
+        # print(ganador)
+        print("no esta lleno 1")
+        return False
+    else:
+        print("gano el jugador")
+        return True
+    
+# verificar si ya se lleno el de Marta
+def ganador_marta(tablero):
+    print("si entro con Marta")
+    # verificar si el lado derecho esta lleno
+    if (tablero[9][5] == '-' or tablero[9][6] == '-' or tablero[9][7] == '-' or tablero[9][8] == '-' or tablero[9][9] == '-' or tablero[8][6] == '-' or tablero[8][7] == '-' or tablero[8][8] == '-' or tablero[8][9] == '-' or tablero[7][7] == '-' or tablero[7][8] == '-' or tablero[7][9] == '-' or tablero[6][8] == '-' or tablero[6][9] == '-' or tablero[5][9] == '-'):
+        # print(ganador)
+        # print(ganador)
+        print("no esta lleno")
+        return False
+    else:
+        print("gano el Marta")
+        return True
 
 def hoppers(tablero, turno_jugador):
-    if (turno_jugador == True):
-        Jugador_juega(tablero)
-
+    Jugador_juega(tablero)
+    turno_jugador = False
+    if (ganador_jugador(tablero) == False and ganador_marta(tablero) == False):
+        print("sigue")
+        if (turno_jugador == True):
+            Jugador_juega(tablero)
+        # else:
+            # llamar a Marta para su jugada 
+        else:
+            print("no")
 
 hoppers(tablero, turno_jugador)
