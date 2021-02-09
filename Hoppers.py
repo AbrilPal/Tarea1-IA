@@ -3,7 +3,7 @@
 # 06/02/2021
 
 # importamos a marta
-from Marta import * 
+# from Marta import * 
 
 # Tablero inicial
 jugador = "j"
@@ -11,9 +11,9 @@ marta = "m"
 vacio = "-"
 tablero = [[jugador, jugador, jugador, jugador, jugador, vacio, vacio, vacio, vacio, vacio],
             [jugador, jugador, jugador, jugador, vacio, vacio, vacio, vacio, vacio, vacio],
-            [jugador, jugador, jugador, vacio, vacio, vacio, vacio, vacio, vacio, vacio],
-            [jugador, jugador, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio],
             [jugador, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio],
+            [jugador, jugador, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio],
+            [jugador, jugador, vacio, jugador, vacio, vacio, vacio, vacio, vacio, vacio],
             [vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, marta],
             [vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, marta, marta],
             [vacio, vacio, vacio, vacio, vacio, vacio, vacio, marta, marta, marta],
@@ -55,7 +55,7 @@ def Jugador_juega(tablero):
         pos1 = pos[1].split(")")
         x = int(pos1[0])
         # cambiar estado de la casilla seleccionada
-        tablero[y][x] = "-"
+        # tablero[y][x] = "-"
         # ultima posicion de la jugada ingresada
         jugada_final = jugada_arreglo[-1]
         # print(jugada_final)
@@ -65,7 +65,7 @@ def Jugador_juega(tablero):
         pos1 = pos[1].split(")")
         x = int(pos1[0])
         # cambiar estado de la casilla final
-        tablero[y][x] = "j"
+        # tablero[y][x] = "j"
         # imprimir tablero nuevo
         print(tablero[0])
         print(tablero[1])
@@ -92,7 +92,7 @@ def jugada_valida(tablero, jugada_e):
         y_inicial = int(pos1[1])
         pos1 = pos[1].split(")")
         x_inicial = int(pos1[0])
-        # print(y_inicial, x_inicial)
+        print(y_inicial, x_inicial)
         # print(jugada_e[i])
         casilla = jugada_e[i + 1]
         # print(casilla_inicial)
@@ -109,6 +109,9 @@ def jugada_valida(tablero, jugada_e):
                 # solo verifica si esta vacia
                 if (tablero[y][x] == 'm' or tablero[y][x] == 'j'):
                     resultado_jugada = False
+                else:
+                    tablero[y_inicial][x_inicial] = "-"
+                    tablero[y][x] = "j"
             else:
                 # primero verificar que esten vacias
                 if (tablero[y][x] == '-'):
@@ -139,6 +142,9 @@ def jugada_valida(tablero, jugada_e):
                             if (tablero[y-1][x] == '-'):
                                 # print("esta vacia la casilla de en medio, no se puede")
                                 resultado_jugada = False
+                            else:
+                                tablero[y_inicial][x_inicial] = "-"
+                                tablero[y][x] = "j"
                         else:
                             celda = y+1,x
                             if (celda in cercanas_lados):
@@ -146,6 +152,9 @@ def jugada_valida(tablero, jugada_e):
                                 if (tablero[y+1][x] == '-'):
                                     # print("esta vacia la casilla de en medio, no se puede")
                                     resultado_jugada = False
+                                else:
+                                    tablero[y_inicial][x_inicial] = "-"
+                                    tablero[y][x] = "j"
                             else:
                                 celda = y,x-1
                                 if (celda in cercanas_lados):
@@ -153,6 +162,9 @@ def jugada_valida(tablero, jugada_e):
                                     if (tablero[y][x-1] == '-'):
                                         # print("esta vacia la casilla de en medio, no se puede")
                                         resultado_jugada = False
+                                    else:
+                                        tablero[y_inicial][x_inicial] = "-"
+                                        tablero[y][x] = "j"
                                 else:
                                     celda = y,x+1
                                     if (celda in cercanas_lados):
@@ -160,6 +172,9 @@ def jugada_valida(tablero, jugada_e):
                                         if (tablero[y][x+1] == '-'):
                                             # print("esta vacia la casilla de en medio, no se puede")
                                             resultado_jugada = False
+                                        else:
+                                            tablero[y_inicial][x_inicial] = "-"
+                                            tablero[y][x] = "j"
                                     else:
                                         # print("no hay casilla de inter 1")
                                         resultado_jugada = False
@@ -174,6 +189,9 @@ def jugada_valida(tablero, jugada_e):
                             if (tablero[y-1][x-1] == '-'):
                                 # print("esta vacia la casilla de en medio, no se puede hacer")
                                 resultado_jugada = False
+                            else:
+                                tablero[y_inicial][x_inicial] = "-"
+                                tablero[y][x] = "j"
                         else:
                             celda_diagonal = y+1,x+1
                             if (celda_diagonal in cercanas_diagonales):
@@ -181,6 +199,9 @@ def jugada_valida(tablero, jugada_e):
                                 if (tablero[y+1][x+1] == '-'):
                                     # print("esta vacia la casilla de en medio, no se puede hacer")
                                     resultado_jugada = False
+                                else:
+                                    tablero[y_inicial][x_inicial] = "-"
+                                    tablero[y][x] = "j"
                             else:
                                 celda_diagonal = y-1,x+1
                                 if (celda_diagonal in cercanas_diagonales):
@@ -188,6 +209,9 @@ def jugada_valida(tablero, jugada_e):
                                     if (tablero[y-1][x+1] == '-'):
                                         # print("esta vacia la casilla de en medio, no se puede hacer")
                                         resultado_jugada = False
+                                    else:
+                                        tablero[y_inicial][x_inicial] = "-"
+                                        tablero[y][x] = "j"
                                 else:
                                     celda_diagonal = y+1,x-1
                                     if (celda_diagonal in cercanas_diagonales):
@@ -195,6 +219,9 @@ def jugada_valida(tablero, jugada_e):
                                         if (tablero[y+1][x-1] == '-'):
                                             # print("esta vacia la casilla de en medio, no se puede hacer")
                                             resultado_jugada = False
+                                        else:
+                                            tablero[y_inicial][x_inicial] = "-"
+                                            tablero[y][x] = "j"
                                     else:
                                         celda = y-1,x
                                         if (celda in cercanas_lados):
@@ -202,6 +229,9 @@ def jugada_valida(tablero, jugada_e):
                                             if (tablero[y-1][x] == '-'):
                                                 # print("esta vacia la casilla de en medio, no se puede")
                                                 resultado_jugada = False
+                                            else:
+                                                tablero[y_inicial][x_inicial] = "-"
+                                                tablero[y][x] = "j"
                                         else:
                                             celda = y+1,x
                                             if (celda in cercanas_lados):
@@ -209,6 +239,9 @@ def jugada_valida(tablero, jugada_e):
                                                 if (tablero[y+1][x] == '-'):
                                                     # print("esta vacia la casilla de en medio, no se puede")
                                                     resultado_jugada = False
+                                                else:
+                                                    tablero[y_inicial][x_inicial] = "-"
+                                                    tablero[y][x] = "j"
                                             else:
                                                 celda = y,x-1
                                                 if (celda in cercanas_lados):
@@ -216,6 +249,9 @@ def jugada_valida(tablero, jugada_e):
                                                     if (tablero[y][x-1] == '-'):
                                                         # print("esta vacia la casilla de en medio, no se puede")
                                                         resultado_jugada = False
+                                                    else:
+                                                        tablero[y_inicial][x_inicial] = "-"
+                                                        tablero[y][x] = "j"
                                                 else:
                                                     celda = y,x+1
                                                     if (celda in cercanas_lados):
@@ -223,6 +259,9 @@ def jugada_valida(tablero, jugada_e):
                                                         if (tablero[y][x+1] == '-'):
                                                             # print("esta vacia la casilla de en medio, no se puede")
                                                             resultado_jugada = False
+                                                        else:
+                                                            tablero[y_inicial][x_inicial] = "-"
+                                                            tablero[y][x] = "j"
                                                     else:
                                                         # print("no hay casilla de inter 3")
                                                         resultado_jugada = False     
