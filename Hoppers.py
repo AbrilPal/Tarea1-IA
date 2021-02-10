@@ -3,7 +3,7 @@
 # 06/02/2021
 
 # importamos a marta
-# from Marta import * 
+from Marta import * 
 
 # Tablero inicial
 jugador = "j"
@@ -36,6 +36,16 @@ print(tablero[9])
 # ver turno
 turno_jugador = True
 
+def jugada_ia(tablero, movimiento):
+    inicio = movimiento[0]
+    fin = movimiento[1]
+    y_in = inicio[0]
+    x_in = inicio[1]
+    y = fin[0]
+    x = fin[1]
+    tablero[y][x] = 'm'
+    tablero[y_in][x_in] = '-'
+
 # funcion del jugador
 def Jugador_juega(tablero):
     # pedir la jugada en cordenada (y,x)
@@ -66,17 +76,6 @@ def Jugador_juega(tablero):
         x = int(pos1[0])
         # cambiar estado de la casilla final
         # tablero[y][x] = "j"
-        # imprimir tablero nuevo
-        print(tablero[0])
-        print(tablero[1])
-        print(tablero[2])
-        print(tablero[3])
-        print(tablero[4])
-        print(tablero[5])
-        print(tablero[6])
-        print(tablero[7])
-        print(tablero[8])
-        print(tablero[9])
     else:
         print("no seas pendejo")
 
@@ -92,7 +91,7 @@ def jugada_valida(tablero, jugada_e):
         y_inicial = int(pos1[1])
         pos1 = pos[1].split(")")
         x_inicial = int(pos1[0])
-        print(y_inicial, x_inicial)
+        # print(y_inicial, x_inicial)
         # print(jugada_e[i])
         casilla = jugada_e[i + 1]
         # print(casilla_inicial)
@@ -304,14 +303,63 @@ def ganador_marta(tablero):
 
 def hoppers(tablero, turno_jugador):
     Jugador_juega(tablero)
+    # imprimir tablero nuevo
+    print(tablero[0])
+    print(tablero[1])
+    print(tablero[2])
+    print(tablero[3])
+    print(tablero[4])
+    print(tablero[5])
+    print(tablero[6])
+    print(tablero[7])
+    print(tablero[8])
+    print(tablero[9])
     turno_jugador = False
-    if (ganador_jugador(tablero) == False and ganador_marta(tablero) == False):
-        print("sigue")
+    valor, movimiento = minimax(tablero, 2, True)
+    jugada_ia(tablero, movimiento)
+    print(movimiento)
+    # imprimir tablero nuevo
+    print(tablero[0])
+    print(tablero[1])
+    print(tablero[2])
+    print(tablero[3])
+    print(tablero[4])
+    print(tablero[5])
+    print(tablero[6])
+    print(tablero[7])
+    print(tablero[8])
+    print(tablero[9])
+    turno_jugador = True
+    while (ganador_jugador(tablero) != True and ganador_marta(tablero) != True):
         if (turno_jugador == True):
             Jugador_juega(tablero)
-        # else:
-            # llamar a Marta para su jugada 
+            # imprimir tablero nuevo
+            print(tablero[0])
+            print(tablero[1])
+            print(tablero[2])
+            print(tablero[3])
+            print(tablero[4])
+            print(tablero[5])
+            print(tablero[6])
+            print(tablero[7])
+            print(tablero[8])
+            print(tablero[9])
+            turno_jugador = False
         else:
-            print("no")
+            valor, movimiento = minimax(tablero, 2, True)
+            jugada_ia(tablero, movimiento)
+            print(movimiento)
+            # imprimir tablero nuevo
+            print(tablero[0])
+            print(tablero[1])
+            print(tablero[2])
+            print(tablero[3])
+            print(tablero[4])
+            print(tablero[5])
+            print(tablero[6])
+            print(tablero[7])
+            print(tablero[8])
+            print(tablero[9])
+            turno_jugador = True
 
 hoppers(tablero, turno_jugador)
