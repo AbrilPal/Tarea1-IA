@@ -11,9 +11,9 @@ marta = "m"
 vacio = "-"
 tablero = [[jugador, jugador, jugador, jugador, jugador, vacio, vacio, vacio, vacio, vacio],
             [jugador, jugador, jugador, jugador, vacio, vacio, vacio, vacio, vacio, vacio],
-            [jugador, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio],
+            [jugador, jugador, jugador, vacio, vacio, vacio, vacio, vacio, vacio, vacio],
             [jugador, jugador, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio],
-            [jugador, jugador, vacio, jugador, vacio, vacio, vacio, vacio, vacio, vacio],
+            [jugador, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio],
             [vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, marta],
             [vacio, vacio, vacio, vacio, vacio, vacio, vacio, vacio, marta, marta],
             [vacio, vacio, vacio, vacio, vacio, vacio, vacio, marta, marta, marta],
@@ -77,7 +77,8 @@ def Jugador_juega(tablero):
         # cambiar estado de la casilla final
         # tablero[y][x] = "j"
     else:
-        print("no seas pendejo")
+        # print("no seas pendejo")
+        exit()
 
 # verificar si la jugada ingresada es valida
 def jugada_valida(tablero, jugada_e):
